@@ -1,0 +1,56 @@
+# SecureSight Linux Agent Configuration
+
+# API Configuration
+api_url: "http://localhost:8000"
+api_key: "your-agent-api-key"
+
+# Optional: Override hostname (defaults to system hostname)
+# hostname: "my-linux-server"
+
+# Log files to monitor
+log_files:
+  - path: /var/log/auth.log
+    log_type: auth
+    
+  - path: /var/log/syslog
+    log_type: syslog
+    
+  - path: /var/log/messages
+    log_type: syslog
+    
+  # SSH logs (Debian/Ubuntu)
+  - path: /var/log/auth.log
+    log_type: auth
+    
+  # SSH logs (RHEL/CentOS)  
+  - path: /var/log/secure
+    log_type: auth
+    
+  # Kernel logs
+  - path: /var/log/kern.log
+    log_type: kernel
+    
+  # Application logs
+  - path: /var/log/nginx/access.log
+    log_type: http
+    encoding: utf-8
+    
+  - path: /var/log/nginx/error.log
+    log_type: http
+    encoding: utf-8
+    
+  - path: /var/log/apache2/access.log
+    log_type: http
+    
+  - path: /var/log/apache2/error.log
+    log_type: http
+
+# Batching configuration
+batch_size: 100
+flush_interval: 5  # seconds
+
+# Retry configuration
+retry_attempts: 3
+
+# State file for tracking file positions
+state_file: /var/lib/securesight/agent_state.json

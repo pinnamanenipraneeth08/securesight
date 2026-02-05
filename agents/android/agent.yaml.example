@@ -1,0 +1,41 @@
+# SecureSight Android Agent Configuration
+# Copy this file to agent.yaml and update with your settings
+
+# API Configuration
+api_url: "http://localhost:8000"
+api_key: "your-api-key-here"
+
+# Agent hostname (optional, defaults to system hostname)
+# hostname: "android-monitor-01"
+
+# ADB path (optional, defaults to 'adb' in PATH)
+# adb_path: "/path/to/adb"
+
+# Devices to monitor
+# If empty, will auto-detect connected devices
+devices:
+  # Example: Monitor specific device by ID
+  # - device_id: "emulator-5554"
+  #   friendly_name: "Test Emulator"
+  #   include_apps: []  # Empty means all apps
+  #   exclude_apps: ["com.android.launcher"]
+  #   log_buffers: ["main", "system", "events", "crash"]
+  
+  # Example: Monitor via wireless ADB
+  # - device_id: "192.168.1.100:5555"
+  #   friendly_name: "Living Room Tablet"
+  #   include_apps: ["com.mycompany.app"]
+  #   log_buffers: ["main", "system"]
+
+# Batch settings
+batch_size: 100
+flush_interval: 5  # seconds
+poll_interval: 10  # seconds between full log collection
+
+# Retry settings
+retry_attempts: 3
+
+# State file location (optional)
+# Windows default: C:\ProgramData\SecureSight\android_agent_state.json
+# Linux default: /var/lib/securesight/android_agent_state.json
+# state_file: "/custom/path/state.json"

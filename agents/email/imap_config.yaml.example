@@ -1,0 +1,50 @@
+# SecureSight IMAP Email Monitor Configuration
+# Copy to imap_config.yaml and fill in your settings
+
+# SecureSight SIEM Connection
+siem_url: "http://localhost:8000"
+siem_api_key: "your-siem-api-key"
+
+# Mailboxes to monitor
+mailboxes:
+  # Gmail example (requires App Password)
+  # Go to: Google Account > Security > 2FA > App Passwords
+  - email: "security@yourcompany.com"
+    password: "your-app-password"
+    imap_server: "imap.gmail.com"
+    imap_port: 993
+    use_ssl: true
+    folders:
+      - "INBOX"
+      - "[Gmail]/Spam"
+    label: "Company Gmail"
+
+  # Microsoft 365 example
+  # - email: "admin@yourcompany.onmicrosoft.com"
+  #   password: "your-password"
+  #   imap_server: "outlook.office365.com"
+  #   imap_port: 993
+  #   use_ssl: true
+  #   folders:
+  #     - "INBOX"
+  #     - "Junk Email"
+  #   label: "Office 365"
+
+  # On-premise Exchange example
+  # - email: "admin@company.local"
+  #   password: "password"
+  #   imap_server: "mail.company.local"
+  #   imap_port: 993
+  #   use_ssl: true
+  #   folders:
+  #     - "INBOX"
+  #   label: "Exchange Server"
+
+# Monitoring Settings
+check_interval: 60       # Seconds between checks
+lookback_hours: 24       # How far back to check on first run
+analyze_attachments: true  # Check for suspicious attachments
+analyze_links: true        # Extract and log links from emails
+
+# State file (tracks last processed messages)
+state_file: "imap_state.json"

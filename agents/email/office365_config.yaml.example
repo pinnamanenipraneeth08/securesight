@@ -1,0 +1,32 @@
+# SecureSight Office 365 Email Monitor Configuration
+# Copy to agent.yaml and fill in your Azure AD app credentials
+
+# Azure AD App Registration
+# Create at: https://portal.azure.com/#view/Microsoft_AAD_RegisteredApps
+# Required API Permissions:
+#   - AuditLog.Read.All (Application)
+#   - SecurityEvents.Read.All (Application)  
+#   - Directory.Read.All (Application)
+#   - Mail.Read (Application) - for message trace
+tenant_id: "your-tenant-id"
+client_id: "your-client-id"
+client_secret: "your-client-secret"
+
+# SecureSight SIEM Connection
+siem_url: "http://localhost:8000"
+siem_api_key: "your-siem-api-key"
+
+# Monitoring Options
+monitor_signins: true          # Azure AD sign-in logs
+monitor_audit: true            # Admin audit logs
+monitor_security_alerts: true  # Microsoft 365 Defender alerts
+monitor_message_trace: true    # Email message tracking
+
+# Polling Intervals (seconds)
+signin_interval: 60            # Check sign-ins every minute
+audit_interval: 300            # Check audit logs every 5 minutes
+security_interval: 30          # Check security alerts every 30 seconds
+message_trace_interval: 120    # Check message trace every 2 minutes
+
+# State file (tracks last processed events)
+state_file: "o365_state.json"

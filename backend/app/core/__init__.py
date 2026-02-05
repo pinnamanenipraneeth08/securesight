@@ -1,0 +1,1 @@
+"""SecureSight Core Module"""
