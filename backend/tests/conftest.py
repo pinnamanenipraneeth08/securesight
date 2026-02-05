@@ -8,17 +8,17 @@ from typing import Generator, AsyncGenerator
 
 # Set test environment
 os.environ["ENVIRONMENT"] = "test"
-os.environ["DATABASE_HOST"] = os.environ.get("DATABASE_HOST", "localhost")
-os.environ["DATABASE_PORT"] = os.environ.get("DATABASE_PORT", "5432")
-os.environ["DATABASE_USER"] = os.environ.get("DATABASE_USER", "test")
-os.environ["DATABASE_PASSWORD"] = os.environ.get("DATABASE_PASSWORD", "test")
-os.environ["DATABASE_NAME"] = os.environ.get("DATABASE_NAME", "securesight_test")
+os.environ["POSTGRES_HOST"] = os.environ.get("POSTGRES_HOST", "localhost")
+os.environ["POSTGRES_PORT"] = os.environ.get("POSTGRES_PORT", "5432")
+os.environ["POSTGRES_USER"] = os.environ.get("POSTGRES_USER", "test")
+os.environ["POSTGRES_PASSWORD"] = os.environ.get("POSTGRES_PASSWORD", "test")
+os.environ["POSTGRES_DB"] = os.environ.get("POSTGRES_DB", "securesight_test")
 os.environ["ELASTICSEARCH_HOST"] = os.environ.get("ELASTICSEARCH_HOST", "localhost")
 os.environ["ELASTICSEARCH_PORT"] = os.environ.get("ELASTICSEARCH_PORT", "9200")
 os.environ["REDIS_HOST"] = os.environ.get("REDIS_HOST", "localhost")
 os.environ["REDIS_PORT"] = os.environ.get("REDIS_PORT", "6379")
 os.environ["SECRET_KEY"] = "test-secret-key"
-os.environ["API_KEY"] = "test-api-key"
+os.environ["AGENT_API_KEY"] = "test-api-key"
 
 
 @pytest.fixture(scope="session")
@@ -42,7 +42,7 @@ async def async_client() -> AsyncGenerator:
 @pytest.fixture
 def api_key_headers():
     """Headers with API key for authenticated requests"""
-    return {"X-API-Key": os.environ["API_KEY"]}
+    return {"X-API-Key": os.environ["AGENT_API_KEY"]}
 
 
 @pytest.fixture
